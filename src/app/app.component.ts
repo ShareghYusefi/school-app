@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 
+// Component Decorator is used to define the metadata for a component.
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
