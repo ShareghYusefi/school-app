@@ -5,3 +5,9 @@
 </p>
 <!-- property binding updates in one direction: from the component to the DOM -->
 <img [src]="imageUrl" [alt]="alt" />
+<!-- Attribute binding: certain DOM html elements dont have a 1 to 1 mapping of attributes so we must specify the attribute we want to bind to through "attr" -->
+<table>
+  <tr [attr.colspan]="colSpan">
+    Table data here
+  </tr>
+</table>
