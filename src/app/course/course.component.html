@@ -1,4 +1,6 @@
-<h2>{{ title }}</h2>
+<h2>{{ title | titlecase }}</h2>
+<!-- Pipes: | is used to apply a pipe to a value which transforms the data-->
+{{ date | date }}
 <ul>
   <!-- ngForOf can be used to iterate over items within an array -->
   <li *ngFor="let course of courses">

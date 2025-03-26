@@ -8,7 +8,8 @@ import { CoursesService } from '../courses.service';
   styleUrl: './course.component.css',
 })
 export class CourseComponent {
-  title: string = 'List of Courses';
+  title: string = 'list of courses';
+  date = new Date();
   courses: string[];
 
   // Dependency Injection
