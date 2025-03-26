@@ -5,7 +5,8 @@
   <!-- String interpolation: {{ }} is used to render dynamic content like simple Javascript expressions -->
   <!-- We can also use string interpolation to render the value of a property (title) defined within the associated component typscript file -->
   <h1>{{ 5 > 3 ? title : "No Title" }}</h1>
-  <p>This is the app component.</p>
+  <!-- Single class binding -->
+  <p [class.active-text]="isToggled">This is the app component.</p>
 
   <!-- What are directive? -->
   <!-- Directives are instructions that tell Angular to manipulate the DOM elements. -->
@@ -15,7 +16,7 @@
 
   <!-- courses -->
   <course></course>
-  <mat-slide-toggle>Toggle me!</mat-slide-toggle>
+  <mat-slide-toggle [class.active-toggle]="isToggled">Toggle me!</mat-slide-toggle>
 </main>
 
 <router-outlet />

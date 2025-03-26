@@ -3,7 +3,11 @@
 {{ date | date }}
 <ul>
   <!-- ngForOf can be used to iterate over items within an array -->
-  <li *ngFor="let course of courses">
+  <!-- Multi class binding -->
+  <li
+    *ngFor="let course of courses"
+    [class]="{ foo: booleanVariable, bar: booleanVariable }"
+  >
     {{ course }}
   </li>
 </ul>

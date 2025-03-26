@@ -1,0 +1,8 @@
+.active-toggle {
+  border: 2px solid green;
+}
+
+.active-text {
+  font-weight: bold;
+  color: green;
+}

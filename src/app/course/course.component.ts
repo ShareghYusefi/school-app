@@ -11,6 +11,7 @@ export class CourseComponent {
   title: string = 'list of courses';
   date = new Date();
   courses: string[];
+  booleanVariable = true;
 
   // Dependency Injection
   // when this component is created, angular injects an instance CoursesService into the constructor
