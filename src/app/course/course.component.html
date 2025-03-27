@@ -4,6 +4,7 @@
 <ul>
   <!-- ngForOf can be used to iterate over items within an array -->
   <!-- Multi class binding -->
+  <!-- ngClass, ngStyle, ngSwitch -->
   <li
     *ngFor="let course of courses"
     [ngClass]="{
@@ -16,5 +17,10 @@
     }"
   >
     {{ course }}
+    <div [ngSwitch]="course">
+      <div *ngSwitchCase="'Math 101'">Math Course starts in 3 days.</div>
+      <div *ngSwitchCase="'Science 101'">Science Course starts in 1 day.</div>
+      <div *ngSwitchDefault>Unknown course</div>
+    </div>
   </li>
 </ul>
