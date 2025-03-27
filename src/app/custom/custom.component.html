@@ -12,7 +12,15 @@
   </tr>
 </table>
 <!-- Two way binding: updates in both directions. From the component to the DOm and vice versa -->
-<input type="text" [(ngModel)]="email" (keydown.enter)="onKeyDown()" />
+<!-- Template variable: a reference to a DOM element in the html template file -->
+<!-- #emailRef is a template variable that references the input element -->
+<input
+  #emailRef
+  type="text"
+  [(ngModel)]="email"
+  (keydown.enter)="onKeyDown(emailRef.value)"
+/>
+<p>{{ emailRef.value }}</p>
 <!-- Event binding: updates in one direction from the DOM element event to the component function -->
 <button
   [style.color]="isActive ? 'red' : 'purple'"

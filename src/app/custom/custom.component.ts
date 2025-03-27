@@ -15,8 +15,8 @@ export class CustomComponent {
   isActive = false;
   email = 'test@gmail.com';
 
-  onKeyDown() {
-    console.log(this.email);
+  onKeyDown(emailArg: any) {
+    console.log('Enter was pressed: ', emailArg);
   }
 
   buttonClick($event: Event) {
