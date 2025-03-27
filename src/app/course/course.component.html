@@ -6,7 +6,10 @@
   <!-- Multi class binding -->
   <li
     *ngFor="let course of courses"
-    [class]="{ foo: booleanVariable, bar: booleanVariable }"
+    [ngClass]="{
+      'another-class': booleanVariable,
+      'false-class': true
+    }"
   >
     {{ course }}
   </li>
