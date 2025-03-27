@@ -12,4 +12,10 @@
   </tr>
 </table>
 
-<button [style.color]="isActive ? 'red' : 'purple'">Submit</button>
+<!-- Event bidning: is when we bind a function from component to element in DOM -->
+<button
+  [style.color]="isActive ? 'red' : 'purple'"
+  (click)="buttonClick($event)"
+>
+  Submit
+</button>

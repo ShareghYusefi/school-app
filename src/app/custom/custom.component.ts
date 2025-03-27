@@ -13,4 +13,9 @@ export class CustomComponent {
   alt = 'This is the google logo';
   colSpan = 2;
   isActive = false;
+
+  buttonClick($event: Event) {
+    console.log('Button was clicked', $event);
+    
+  }
 }
