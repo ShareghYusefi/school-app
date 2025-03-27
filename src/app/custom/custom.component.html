@@ -11,8 +11,9 @@
     Table data here
   </tr>
 </table>
-
-<!-- Event bidning: is when we bind a function from component to element in DOM -->
+<!-- Two way binding: updates in both directions. From the component to the DOm and vice versa -->
+<input type="text" [(ngModel)]="email" (keydown.enter)="onKeyDown()" />
+<!-- Event binding: updates in one direction from the DOM element event to the component function -->
 <button
   [style.color]="isActive ? 'red' : 'purple'"
   (click)="buttonClick($event)"

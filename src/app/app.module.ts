@@ -6,10 +6,11 @@ import { AppComponent } from './app.component';
 import { CustomComponent } from './custom/custom.component';
 import { CourseComponent } from './course/course.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AppComponent, CustomComponent, CourseComponent],
-  imports: [BrowserModule, AppRoutingModule, MatSlideToggleModule],
+  imports: [BrowserModule, AppRoutingModule, MatSlideToggleModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent],
 })

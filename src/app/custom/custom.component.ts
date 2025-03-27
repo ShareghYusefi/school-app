@@ -13,9 +13,13 @@ export class CustomComponent {
   alt = 'This is the google logo';
   colSpan = 2;
   isActive = false;
+  email = 'test@gmail.com';
+
+  onKeyDown() {
+    console.log(this.email);
+  }
 
   buttonClick($event: Event) {
     console.log('Button was clicked', $event);
-    
   }
 }
