@@ -18,9 +18,11 @@
   >
     {{ course }}
     <div [ngSwitch]="course">
-      <div *ngSwitchCase="'Math 101'">Math Course starts in 3 days.</div>
-      <div *ngSwitchCase="'Science 101'">Science Course starts in 1 day.</div>
-      <div *ngSwitchDefault>Unknown course</div>
+      <small *ngSwitchCase="'Math 101'">Math Course starts in 3 days.</small>
+      <small *ngSwitchCase="'Science 101'"
+        >Science Course starts in 1 day.</small
+      >
+      <small *ngSwitchDefault>Unknown course</small>
     </div>
   </li>
 </ul>
