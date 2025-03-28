@@ -16,7 +16,7 @@
       fontFamily: 'Arial'
     }"
   >
-    {{ course }}
+    {{ course | capitalize }}
     <div [ngSwitch]="course">
       <small *ngSwitchCase="'Math 101'">Math Course starts in 3 days.</small>
       <small *ngSwitchCase="'Science 101'"

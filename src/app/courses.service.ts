@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 })
 export class CoursesService {
   // private accessor limits access to only within class for defined variable.
-  private courses: string[] = ['Math 101', 'Science 101', 'Biology 100'];
+  private courses: string[] = ['math 101', 'science 101', 'biology 100'];
 
   constructor() {}
 

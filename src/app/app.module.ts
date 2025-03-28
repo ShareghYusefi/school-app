@@ -8,9 +8,10 @@ import { CourseComponent } from './course/course.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { FormsModule } from '@angular/forms';
 import { ColorfulBgDirective } from './colorful-bg.directive';
+import { CapitalizePipe } from './capitalize.pipe';
 
 @NgModule({
-  declarations: [AppComponent, CustomComponent, CourseComponent, ColorfulBgDirective],
+  declarations: [AppComponent, CustomComponent, CourseComponent, ColorfulBgDirective, CapitalizePipe],
   imports: [BrowserModule, AppRoutingModule, MatSlideToggleModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent],
