@@ -1,5 +1,8 @@
-<h1>Root Component Loaded</h1>
-<!-- using custom components -->
-<custom></custom>
+<!-- String Interpolation: {{}} is used to render dynamic conent. We can even write Javascript expressions in them. -->
+<h1>{{ 4 > 3 ? title : "No Title" }}</h1>
+<!-- What are directives? -->
+<!-- Directives are instructions which tell Angular to manipulate the DOM elements. -->
+<!-- ngIf, ngFor, ngSwitch, ngStyle, ngClass -->
+<custom *ngIf="2 > 1"></custom>
 
 <router-outlet />
