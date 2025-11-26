@@ -14,4 +14,6 @@ export class Custom {
     width: 150,
   };
   colSpan = 2;
+  boxSize = 150;
+  boxColor = 'blue';
 }
