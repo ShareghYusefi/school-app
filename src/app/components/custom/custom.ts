@@ -13,4 +13,5 @@ export class Custom {
     alt: 'Cat Pouncing',
     width: 150,
   };
+  colSpan = 2;
 }

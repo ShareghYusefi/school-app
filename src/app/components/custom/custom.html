@@ -2,3 +2,44 @@
 <h2>{{ title | uppercase }}</h2>
 <!-- property binding updates in one direction: from the component to DOM -->
 <img [src]="photo.url" [alt]="photo.alt" [width]="photo.width" />
+<!-- Attribute binding: certain DOM html ements do not have a 1:1 mapping of attributes define in html code. -->
+<table>
+  <caption>
+    Front-end web developer course 2021
+  </caption>
+  <thead>
+    <tr>
+      <th scope="col">Person</th>
+      <th scope="col">Most interest in</th>
+      <th scope="col">Age</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">Chris</th>
+      <td>HTML tables</td>
+      <td>22</td>
+    </tr>
+    <tr>
+      <th scope="row">Dennis</th>
+      <td>Web accessibility</td>
+      <td>45</td>
+    </tr>
+    <tr>
+      <th scope="row">Sarah</th>
+      <td>JavaScript frameworks</td>
+      <td>29</td>
+    </tr>
+    <tr>
+      <th scope="row">Karen</th>
+      <td>Web performance</td>
+      <td>36</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <th scope="row" [attr.colspan]="colSpan">Average age</th>
+      <td>33</td>
+    </tr>
+  </tfoot>
+</table>
