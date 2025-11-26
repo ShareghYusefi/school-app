@@ -12,6 +12,7 @@ import { Icourse } from '../../interfaces/icourse';
 export class Course {
   title: string = 'List of Courses';
   courses: Icourse[] = [];
+  booleanVariable: boolean = true;
 
   // Dependency Injection
   // When this component is created, angular will find and inject an instance of the course service class here, and assign it to a variable.
