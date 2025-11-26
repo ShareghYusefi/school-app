@@ -6,4 +6,11 @@ import { Component } from '@angular/core';
   templateUrl: './custom.html',
   styleUrl: './custom.css',
 })
-export class Custom {}
+export class Custom {
+  title = 'Custom Component Title';
+  photo = {
+    url: 'https://cats.com/wp-content/uploads/2023/04/cat-pouncing.jpg',
+    alt: 'Cat Pouncing',
+    width: 150,
+  };
+}

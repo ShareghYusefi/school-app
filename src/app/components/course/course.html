@@ -5,8 +5,8 @@
     {{ course }}
   </li> -->
   <ul>
-    @for (course of courses; track $index) {
-    <li>{{ course }}</li>
+    @for (course of courses; track course.name) {
+    <li>{{ course.name + " " + course.level }}</li>
     } @empty {
     <li>There are no items.</li>
     }
