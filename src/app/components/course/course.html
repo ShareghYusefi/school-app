@@ -8,6 +8,11 @@
     @for (course of courses; track course.name) {
     <li [ngClass]="{ 'text-lg-start': booleanVariable }">
       {{ course.name + " " + course.level }}
+      <div [ngSwitch]="course.name">
+        <small *ngSwitchCase="'Math'">Math course starts in 3 days.</small>
+        <small *ngSwitchCase="'Science'">Science course starts in 1 day.</small>
+        <small *ngSwitchDefault>Unknown start date.</small>
+      </div>
     </li>
     } @empty {
     <li>There are no items.</li>
