@@ -16,4 +16,8 @@ export class Custom {
   colSpan = 2;
   boxSize = 150;
   boxColor = 'blue';
+
+  sampleFunc() {
+    console.log('Sample Function called!');
+  }
 }
