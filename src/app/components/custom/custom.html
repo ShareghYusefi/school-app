@@ -52,4 +52,6 @@
 <button (click)="sampleFunc()">Click me!</button>
 
 <!-- Two way binding: [(ngModel)] updates the component and DOM in both directions -->
-<input type="email" [(ngModel)]="email" />
+<!-- Template variables: #variableName is a reference to a DOM element within our html template -->
+<input #emailRef type="email" [(ngModel)]="email" />
+<p>{{ emailRef.value }}</p>
