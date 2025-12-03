@@ -31,6 +31,12 @@ export class Courses implements OnChanges, OnInit, DoCheck, OnDestroy {
     console.log('Courses constructor');
   }
 
+  message: any;
+
+  alertMessage(message: any) {
+    this.message = message;
+  }
+
   // 2. ngOnChanges runs when @Input property changes from undefined to a value
   ngOnChanges(changes: SimpleChanges): void {
     console.log('Courses ngOnChanges');

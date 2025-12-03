@@ -7,7 +7,7 @@
   <ul>
     @for (course of courses; track course.name) {
     <!-- We can pass the course object to the course component via @Input directive/property -->
-    <course [course]="course"></course>
+    <course [course]="course" (childEvent)="alertMessage($event)"></course>
     <!-- <li [ngClass]="{ 'text-lg-start': booleanVariable }">
     </li> -->
     } @empty {
@@ -15,3 +15,5 @@
     }
   </ul>
 </ul>
+
+<pre>{{ message }}</pre>

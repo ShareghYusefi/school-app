@@ -7,4 +7,5 @@
     "science course starts in 1 day." | capitalization
   }}</small>
   <small *ngSwitchDefault>{{ "unknown start date." | capitalization }}</small>
+  <button (click)="sendDataToParent()">Send Child Data to Parent</button>
 </div>
