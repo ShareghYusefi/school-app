@@ -1,27 +1,10 @@
-<h2 [class]="{ 'text-uppercase': booleanVariable }">{{ title }}</h2>
-<ul>
-  <!-- ngFor directive: deprecated -->
-  <!-- <li *ngFor="let course of courses">
-    {{ course }}
-  </li> -->
-  <ul>
-    @for (course of courses; track course.name) {
-    <li [ngClass]="{ 'text-lg-start': booleanVariable }">
-      {{ course.name + " " + course.level }}
-      <div [ngSwitch]="course.name">
-        <small *ngSwitchCase="'Math'">{{
-          "math course starts in 3 days." | capitalization
-        }}</small>
-        <small *ngSwitchCase="'Science'">{{
-          "science course starts in 1 day." | capitalization
-        }}</small>
-        <small *ngSwitchDefault>{{
-          "unknown start date." | capitalization
-        }}</small>
-      </div>
-    </li>
-    } @empty {
-    <li>There are no items.</li>
-    }
-  </ul>
-</ul>
+<h3>{{ course.name + " " + course.level }}</h3>
+<div [ngSwitch]="course.name">
+  <small *ngSwitchCase="'Math'">{{
+    "math course starts in 3 days." | capitalization
+  }}</small>
+  <small *ngSwitchCase="'Science'">{{
+    "science course starts in 1 day." | capitalization
+  }}</small>
+  <small *ngSwitchDefault>{{ "unknown start date." | capitalization }}</small>
+</div>

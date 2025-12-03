@@ -1,0 +1,17 @@
+<h2 [class]="{ 'text-uppercase': booleanVariable }">{{ title }}</h2>
+<ul>
+  <!-- ngFor directive: deprecated -->
+  <!-- <li *ngFor="let course of courses">
+    {{ course }}
+  </li> -->
+  <ul>
+    @for (course of courses; track course.name) {
+    <!-- We can pass the course object to the course component via @Input directive/property -->
+    <course [course]="course"></course>
+    <!-- <li [ngClass]="{ 'text-lg-start': booleanVariable }">
+    </li> -->
+    } @empty {
+    <li>There are no items.</li>
+    }
+  </ul>
+</ul>

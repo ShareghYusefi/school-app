@@ -1,8 +1,6 @@
-import { Component } from '@angular/core';
-import { CourseService } from '../../services/course-service';
+import { Component, Input } from '@angular/core';
 import { Icourse } from '../../interfaces/icourse';
 
-// Component decorator is used to define associated metadata
 @Component({
   selector: 'course',
   standalone: false,
@@ -10,15 +8,6 @@ import { Icourse } from '../../interfaces/icourse';
   styleUrl: './course.css',
 })
 export class Course {
-  title: string = 'List of Courses';
-  courses: Icourse[] = [];
-  booleanVariable: boolean = true;
-
-  // Dependency Injection
-  // When this component is created, angular will find and inject an instance of the course service class here, and assign it to a variable.
-  constructor(courseService: CourseService) {
-    // create instance of service class
-    // let courseService = new CourseService();
-    this.courses = courseService.getCourses();
-  }
+  // ! lets typescript know that this variable will be initialized
+  @Input() course!: Icourse;
 }

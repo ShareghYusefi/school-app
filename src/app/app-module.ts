@@ -10,11 +10,12 @@ import { FormsModule } from '@angular/forms';
 import { ColorfulBg } from './directives/colorful-bg';
 import { CapitalizationPipe } from './pipes/capitalization-pipe';
 import { MathModule } from './modules/math/math-module';
+import { Courses } from './components/courses/courses';
 
 // You can think of an Angular module like a folder in your project that tells Angular what;s inside it and how the pieces work together.
 @NgModule({
   // components/directives/pipes belong to this module
-  declarations: [App, Custom, Course, Navbar, ColorfulBg, CapitalizationPipe],
+  declarations: [App, Custom, Course, Navbar, ColorfulBg, CapitalizationPipe, Courses],
   imports: [BrowserModule, AppRoutingModule, FormsModule, MathModule],
   providers: [provideBrowserGlobalErrorListeners()],
   bootstrap: [App],
