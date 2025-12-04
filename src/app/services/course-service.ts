@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class CourseService {
+  API_URL = 'http://localhost:3000';
   // private _courses: Icourse[] = [
   //   { id: 1, name: 'Math', level: 101 },
   //   { id: 2, name: 'Science', level: 101 },
@@ -20,8 +21,12 @@ export class CourseService {
   getCourses(): Observable<Icourse[]> {
     // Typically making an API call for all courses, but we will use in memory array for now.
     // We can use < > to specify the type of data we expect from the API call.
-    return this.httpClientInstance.get<Icourse[]>(
-      'http://localhost:3000/courses'
+    return this.httpClientInstance.get<Icourse[]>(this.API_URL + '/courses');
+  }
+
+  deleteCourse(id: number): Observable<Icourse> {
+    return this.httpClientInstance.delete<Icourse>(
+      this.API_URL + '/courses/' + id
     );
   }
 }
