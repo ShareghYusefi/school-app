@@ -6,9 +6,9 @@ import { Icourse } from '../interfaces/icourse';
 })
 export class CourseService {
   private _courses: Icourse[] = [
-    { name: 'Math', level: 101 },
-    { name: 'Science', level: 101 },
-    { name: 'Biology', level: 100 },
+    { id: 1, name: 'Math', level: 101 },
+    { id: 2, name: 'Science', level: 101 },
+    { id: 3, name: 'Biology', level: 100 },
   ];
 
   getCourses() {

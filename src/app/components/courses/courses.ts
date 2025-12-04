@@ -33,8 +33,17 @@ export class Courses implements OnChanges, OnInit, DoCheck, OnDestroy {
 
   message: any;
 
-  alertMessage(message: any) {
-    this.message = message;
+  deleteCourse(id: number) {
+    // find the index of course in given id
+    let index = this.courses.findIndex((c) => c.id === id);
+
+    // returned index of -1 means no matching record was found
+    if (index === -1) {
+      return; // exit deleteCourse function call
+    }
+
+    // found the course, remove it from our array.
+    this.courses.splice(index, 1);
   }
 
   // 2. ngOnChanges runs when @Input property changes from undefined to a value
