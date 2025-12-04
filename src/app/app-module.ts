@@ -13,13 +13,24 @@ import { MathModule } from './modules/math/math-module';
 import { Courses } from './components/courses/courses';
 import { Home } from './components/home/home';
 import { NotFound } from './components/not-found/not-found';
+import { provideHttpClient } from '@angular/common/http';
 
 // You can think of an Angular module like a folder in your project that tells Angular what;s inside it and how the pieces work together.
 @NgModule({
   // components/directives/pipes belong to this module
-  declarations: [App, Custom, Course, Navbar, ColorfulBg, CapitalizationPipe, Courses, Home, NotFound],
+  declarations: [
+    App,
+    Custom,
+    Course,
+    Navbar,
+    ColorfulBg,
+    CapitalizationPipe,
+    Courses,
+    Home,
+    NotFound,
+  ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, MathModule],
-  providers: [provideBrowserGlobalErrorListeners()],
+  providers: [provideBrowserGlobalErrorListeners(), provideHttpClient()],
   bootstrap: [App],
 })
 export class AppModule {}

@@ -55,7 +55,10 @@ export class Courses implements OnChanges, OnInit, DoCheck, OnDestroy {
   ngOnInit(): void {
     // create instance of service class
     // let courseService = new CourseService();
-    this.courses = this.courseService.getCourses();
+    // Since the getCourses method returns an Observable object, we need to use the subscribe method to hand the return data
+    this.courseService.getCourses().subscribe((results) => {
+      this.courses = results; // results is going to be if type Icourse[]
+    });
     console.log('Courses ngOnInit');
   }
 
