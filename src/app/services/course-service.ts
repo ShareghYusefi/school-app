@@ -24,6 +24,10 @@ export class CourseService {
     return this.httpClientInstance.get<Icourse[]>(this.API_URL + '/courses');
   }
 
+  addCourse(course: Icourse): Observable<Icourse> {
+    return this.httpClientInstance.post<Icourse>(this.API_URL + '/courses', course);
+  }
+
   deleteCourse(id: number): Observable<Icourse> {
     return this.httpClientInstance.delete<Icourse>(
       this.API_URL + '/courses/' + id
