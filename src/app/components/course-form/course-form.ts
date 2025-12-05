@@ -60,6 +60,26 @@ export class CourseForm implements OnInit {
   }
 
   onSubmit() {
+    if (this.courseForm.invalid) return;
+
+    // check if we ahve an id in URL
+    let id = this.route.snapshot.paramMap.get('id');
+    if (id) {
+      this.updateCourse();
+    } else {
+      this.postCourse();
+    }
+  }
+
+  updateCourse() {
+    this.courseService
+      .updateCourse(this.courseForm.value)
+      .subscribe((result: Icourse) => {
+        console.log('Course updated: ', result);
+      });
+  }
+
+  postCourse() {
     this.courseService
       .addCourse(this.courseForm.value)
       .subscribe((result: Icourse) => {

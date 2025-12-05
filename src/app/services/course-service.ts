@@ -37,6 +37,13 @@ export class CourseService {
     );
   }
 
+  updateCourse(course: Icourse): Observable<Icourse> {
+    return this.httpClientInstance.patch<Icourse>(
+      this.API_URL + '/courses/' + course.id,
+      course
+    );
+  }
+
   deleteCourse(id: number): Observable<Icourse> {
     return this.httpClientInstance.delete<Icourse>(
       this.API_URL + '/courses/' + id
