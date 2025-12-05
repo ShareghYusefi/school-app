@@ -7,6 +7,9 @@
     "science course starts in 1 day." | capitalization
   }}</small>
   <small *ngSwitchDefault>{{ "unknown start date." | capitalization }}</small>
+  <button class="btn btn-primary" [routerLink]="['/courses', course.id]">
+    Edit
+  </button>
   <button class="btn btn-danger" (click)="deleteEventTrigger(course.id)">
     delete
   </button>

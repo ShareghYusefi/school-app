@@ -43,7 +43,7 @@
     (click)="onSubmit()"
     [disabled]="courseForm.invalid"
   >
-    Submit
+    {{ courseForm.value.id ? "Update" : "Submit" }}
   </button>
 </form>
 
