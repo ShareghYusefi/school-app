@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { Icourse } from '../interfaces/icourse';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CourseService {
-  API_URL = 'http://localhost:3000';
+  API_URL = environment.api_url;
   // private _courses: Icourse[] = [
   //   { id: 1, name: 'Math', level: 101 },
   //   { id: 2, name: 'Science', level: 101 },
