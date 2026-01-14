@@ -4,8 +4,18 @@ import { Home } from './components/home/home';
 import { Courses } from './components/courses/courses';
 import { NotFound } from './components/not-found/not-found';
 import { CourseForm } from './components/course-form/course-form';
+import { Login } from './components/login/login';
+import { Register } from './components/register/register';
 
 const routes: Routes = [
+  {
+    path: 'login',
+    component: Login,
+  },
+  {
+    path: 'register',
+    component: Register,
+  },
   {
     path: 'home',
     component: Home,

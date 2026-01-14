@@ -15,6 +15,8 @@ import { Home } from './components/home/home';
 import { NotFound } from './components/not-found/not-found';
 import { provideHttpClient } from '@angular/common/http';
 import { CourseForm } from './components/course-form/course-form';
+import { Login } from './components/login/login';
+import { Register } from './components/register/register';
 
 // You can think of an Angular module like a folder in your project that tells Angular what;s inside it and how the pieces work together.
 @NgModule({
@@ -30,6 +32,8 @@ import { CourseForm } from './components/course-form/course-form';
     Home,
     NotFound,
     CourseForm,
+    Login,
+    Register,
   ],
   imports: [
     BrowserModule,
