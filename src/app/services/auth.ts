@@ -16,8 +16,10 @@ import {
 export class Auth {
   private apiUrl = environment.api_url;
   // tokenKey variable is used to store the token in memory and localStorage
-  private tokenKey = '';
+  private tokenKey = 'jwt_token';
+  // BehaviorSubject is from rxjs library that allows us to maintain and emit the current user state
   private currentUserSubject = new BehaviorSubject<IUser | null>(null);
+  // currentUser$ is the observable that components can subscribe to get the current user data
   public currentUser$ = this.currentUserSubject.asObservable();
 
   constructor(private http: HttpClient) {
@@ -33,23 +35,29 @@ export class Auth {
   }
 
   login(credentials: ILoginRequest): Observable<IAuthResponse> {
-    return this.http
-      .post<IAuthResponse>(`${this.apiUrl}/auth/login`, credentials)
-      // pipe can be used to perform side effects on the observable object returned by the http post method
-      .pipe(
-        tap((response) => {
-          if (response.token) {
-            this.setToken(response.token);
-            const payload = this.decodeToken(response.token);
-            if (payload) {
-              this.currentUserSubject.next({
-                id: payload.id,
-                email: payload.email,
-              });
+    return (
+      this.http
+        .post<IAuthResponse>(`${this.apiUrl}/auth/login`, credentials)
+        // pipe can be used to perform side effects on the observable object returned by the http post method
+        .pipe(
+          // tag allows us to perform side effects without altering the response
+          tap((response) => {
+            if (response.token) {
+              // set token in localStorage
+              this.setToken(response.token);
+              // decode token to get user object
+              const payload = this.decodeToken(response.token);
+              if (payload) {
+                // setting the current user
+                this.currentUserSubject.next({
+                  id: payload.id,
+                  email: payload.email,
+                });
+              }
             }
-          }
-        })
-      );
+          })
+        )
+    );
   }
 
   register(credentials: IRegisterRequest): Observable<IAuthResponse> {
