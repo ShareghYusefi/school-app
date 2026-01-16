@@ -6,6 +6,7 @@ import { NotFound } from './components/not-found/not-found';
 import { CourseForm } from './components/course-form/course-form';
 import { Login } from './components/login/login';
 import { Register } from './components/register/register';
+import { authGuard } from './guards/auth-guard';
 
 const routes: Routes = [
   {
@@ -27,6 +28,7 @@ const routes: Routes = [
   {
     path: 'courses',
     component: Courses,
+    canActivate: [authGuard],
   },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '**', component: NotFound },

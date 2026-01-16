@@ -13,10 +13,11 @@ import { MathModule } from './modules/math/math-module';
 import { Courses } from './components/courses/courses';
 import { Home } from './components/home/home';
 import { NotFound } from './components/not-found/not-found';
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { CourseForm } from './components/course-form/course-form';
 import { Login } from './components/login/login';
 import { Register } from './components/register/register';
+import { authInterceptor } from './middlewares/auth-interceptor';
 
 // You can think of an Angular module like a folder in your project that tells Angular what;s inside it and how the pieces work together.
 @NgModule({
@@ -42,7 +43,12 @@ import { Register } from './components/register/register';
     MathModule,
     ReactiveFormsModule,
   ],
-  providers: [provideBrowserGlobalErrorListeners(), provideHttpClient()],
+  // provideHttpClient() sets up the HttpClient for making HTTP requests
+  // withInterceptors() allows us to add interceptors/middleware functions that can modify requests or responses globally
+  providers: [
+    provideBrowserGlobalErrorListeners(),
+    provideHttpClient(withInterceptors([authInterceptor])),
+  ],
   bootstrap: [App],
 })
 export class AppModule {}
