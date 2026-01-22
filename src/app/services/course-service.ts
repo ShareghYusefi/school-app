@@ -31,7 +31,7 @@ export class CourseService {
     );
   }
 
-  addCourse(course: Icourse): Observable<Icourse> {
+  addCourse(course: Icourse | FormData): Observable<Icourse> {
     return this.httpClientInstance.post<Icourse>(
       this.API_URL + '/courses',
       course

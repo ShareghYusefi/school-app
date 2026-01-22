@@ -24,6 +24,15 @@ export class CourseForm implements OnInit {
       id: [0],
       name: ['', [Validators.required, Validators.minLength(3)]],
       level: ['', [Validators.required, Validators.min(100)]],
+      cover: [null],
+    });
+  }
+
+  onFileChange(event: any) {
+    // select first file in input elements files array
+    const file = event.target.files[0];
+    this.courseForm.patchValue({
+      cover: file,
     });
   }
 
@@ -80,12 +89,16 @@ export class CourseForm implements OnInit {
   }
 
   postCourse() {
-    this.courseService
-      .addCourse(this.courseForm.value)
-      .subscribe((result: Icourse) => {
-        console.log('Course added: ', result);
-        // reset the form
-        this.courseForm.reset();
-      });
+    // create formData object to send file data
+    const formData = new FormData();
+    formData.append('name', this.courseForm.get('name')?.value);
+    formData.append('level', this.courseForm.get('level')?.value);
+    formData.append('cover', this.courseForm.get('cover')?.value);
+
+    this.courseService.addCourse(formData).subscribe((result: Icourse) => {
+      console.log('Course added: ', result);
+      // reset the form
+      this.courseForm.reset();
+    });
   }
 }

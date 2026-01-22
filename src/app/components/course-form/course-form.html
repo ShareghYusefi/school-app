@@ -1,6 +1,18 @@
 <!-- We can bind our loginForm instance to the template form using the formGroup directive -->
 <form [formGroup]="courseForm">
   <div class="mb-3">
+    <div class="mb-3">
+      <label for="cover" class="form-label">Course cover: </label>
+      <!-- change event can be used to capture file selection -->
+      <input
+        type="file"
+        class="form-control"
+        id="cover"
+        name="cover"
+        (change)="onFileChange($event)"
+        formControlName="cover"
+      />
+    </div>
     <label for="name" class="form-label">Course name: </label>
     <!-- We can bind our input to a form control using the formControlName directive -->
     <input
