@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CourseService } from '../../services/course-service';
 import { Icourse } from '../../interfaces/icourse';
 import { ActivatedRoute } from '@angular/router';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'course-form',
@@ -12,6 +13,10 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class CourseForm implements OnInit {
   courseForm: FormGroup;
+  // Track existing cover image separately
+  existingCover: string | null = null;
+  // Track if user selected a new file
+  newFileSelected = false;
 
   // We can use FormBuilder instance via Dependency injection to create a form group
   constructor(
@@ -24,16 +29,19 @@ export class CourseForm implements OnInit {
       id: [0],
       name: ['', [Validators.required, Validators.minLength(3)]],
       level: ['', [Validators.required, Validators.min(100)]],
-      cover: [null],
+      cover: [null], // Keep this as null only
     });
   }
 
   onFileChange(event: any) {
     // select first file in input elements files array
     const file = event.target.files[0];
-    this.courseForm.patchValue({
-      cover: file,
-    });
+    if (file) {
+      this.courseForm.patchValue({
+        cover: file,
+      });
+      this.newFileSelected = true;
+    }
   }
 
   ngOnInit(): void {
@@ -50,7 +58,14 @@ export class CourseForm implements OnInit {
               id: course.id,
               name: course.name,
               level: course.level,
+              // Don't set cover control - instead store in component property
             });
+            // Store existing cover image URL separately
+            this.existingCover = course.cover?.length
+              ? environment.api_url + course.cover[0]?.fileUrl
+              : null;
+            // Reset file selection flag
+            this.newFileSelected = false;
           },
           (error) => {
             console.log(error);
@@ -61,11 +76,20 @@ export class CourseForm implements OnInit {
   }
 
   get name() {
-    return this.courseForm.get('email');
+    return this.courseForm.get('name');
   }
 
   get level() {
     return this.courseForm.get('level');
+  }
+
+  get cover() {
+    return this.courseForm.get('cover');
+  }
+
+  // Remove existing cover
+  removeCover() {
+    this.existingCover = null;
   }
 
   onSubmit() {
@@ -74,17 +98,28 @@ export class CourseForm implements OnInit {
     // check if we ahve an id in URL
     let id = this.route.snapshot.paramMap.get('id');
     if (id) {
-      this.updateCourse();
+      this.updateCourse(parseInt(id));
     } else {
       this.postCourse();
     }
   }
 
-  updateCourse() {
+  updateCourse(id: number) {
+    const formData = new FormData();
+    formData.append('id', this.courseForm.get('id')?.value);
+    formData.append('name', this.courseForm.get('name')?.value);
+    formData.append('level', this.courseForm.get('level')?.value);
+
+    // Only append cover if user selected a new file
+    if (this.newFileSelected) {
+      formData.append('cover', this.courseForm.get('cover')?.value);
+    }
+
     this.courseService
-      .updateCourse(this.courseForm.value)
+      .updateCourse(id, formData)
       .subscribe((result: Icourse) => {
         console.log('Course updated: ', result);
+        this.newFileSelected = false;
       });
   }
 
@@ -99,6 +134,8 @@ export class CourseForm implements OnInit {
       console.log('Course added: ', result);
       // reset the form
       this.courseForm.reset();
+      this.existingCover = null;
+      this.newFileSelected = false;
     });
   }
 }

@@ -1,18 +1,43 @@
 <!-- We can bind our loginForm instance to the template form using the formGroup directive -->
 <form [formGroup]="courseForm">
   <div class="mb-3">
+    <!-- Display existing cover image if available -->
+    <div class="mb-3" *ngIf="existingCover && !newFileSelected">
+      <label class="form-label">Current Cover</label>
+      <div class="card">
+        <img
+          [src]="existingCover"
+          alt="Course cover"
+          class="card-img-top"
+          style="height: 200px; object-fit: cover"
+        />
+        <div class="card-body">
+          <button
+            type="button"
+            class="btn btn-sm btn-danger"
+            (click)="removeCover()"
+          >
+            Remove Cover
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- File input for new cover -->
     <div class="mb-3">
-      <label for="cover" class="form-label">Course cover: </label>
-      <!-- change event can be used to capture file selection -->
+      <label for="cover" class="form-label">
+        {{ newFileSelected ? "New Cover Selected" : "Upload Cover" }}
+      </label>
       <input
         type="file"
         class="form-control"
         id="cover"
-        name="cover"
         (change)="onFileChange($event)"
-        formControlName="cover"
+        accept="image/*"
       />
+      <small class="text-muted">PNG, JPG up to 5MB</small>
     </div>
+
     <label for="name" class="form-label">Course name: </label>
     <!-- We can bind our input to a form control using the formControlName directive -->
     <input
@@ -27,8 +52,8 @@
       *ngIf="name?.errors && name?.invalid && name?.touched"
       class="text-danger"
     >
-      <div *ngIf="name?.errors?.['required']">Name is required.</div>
-      <div *ngIf="name?.errors?.['minlength']">
+      <div *ngIf='name?.errors?.["required"]'>Name is required.</div>
+      <div *ngIf='name?.errors?.["minlength"]'>
         Please type a minimum of 3 characters.
       </div>
     </div>
@@ -46,8 +71,8 @@
     *ngIf="level?.errors && level?.invalid && level?.touched"
     class="text-danger"
   >
-    <div *ngIf="level?.errors?.['required']">Level is required.</div>
-    <div *ngIf="level?.errors?.['min']">Please select a number above 100.</div>
+    <div *ngIf='level?.errors?.["required"]'>Level is required.</div>
+    <div *ngIf='level?.errors?.["min"]'>Please select a number above 100.</div>
   </div>
   <button
     type="submit"

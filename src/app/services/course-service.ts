@@ -38,9 +38,9 @@ export class CourseService {
     );
   }
 
-  updateCourse(course: Icourse): Observable<Icourse> {
+  updateCourse(id: number, course: Icourse | FormData): Observable<Icourse> {
     return this.httpClientInstance.patch<Icourse>(
-      this.API_URL + '/courses/' + course.id,
+      this.API_URL + '/courses/' + id,
       course
     );
   }

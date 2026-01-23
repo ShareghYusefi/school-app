@@ -2,5 +2,5 @@ export interface Icourse {
   id: number;
   name: string;
   level: number;
-  cover?: string;
+  cover?: any;
 }
