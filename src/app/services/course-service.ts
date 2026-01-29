@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Icourse } from '../interfaces/icourse';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 
@@ -19,10 +19,14 @@ export class CourseService {
   // This module does need to be imported via provideHttpClient
   constructor(private httpClientInstance: HttpClient) {}
 
-  getCourses(): Observable<Icourse[]> {
+  getCourses(page: number, limit: number): Observable<Icourse[]> {
+    // get page and limit from Http Parameters using HttpParams object
+    const params = new HttpParams().set('page', page).set('limit', limit);
     // Typically making an API call for all courses, but we will use in memory array for now.
     // We can use < > to specify the type of data we expect from the API call.
-    return this.httpClientInstance.get<Icourse[]>(this.API_URL + '/courses');
+    return this.httpClientInstance.get<Icourse[]>(this.API_URL + '/courses', {
+      params: params,
+    });
   }
 
   getCourse(id: number): Observable<Icourse> {

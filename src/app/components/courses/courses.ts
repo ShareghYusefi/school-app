@@ -19,6 +19,9 @@ export class Courses implements OnChanges, OnInit, DoCheck, OnDestroy {
   title: string = 'List of Courses';
   courses: Icourse[] = [];
   booleanVariable: boolean = true;
+  currentPage = 1;
+  totalPages = 0;
+  limit = 3;
   // courseService: CourseService;
 
   // Lifecycle hooks
@@ -56,10 +59,24 @@ export class Courses implements OnChanges, OnInit, DoCheck, OnDestroy {
     // create instance of service class
     // let courseService = new CourseService();
     // Since the getCourses method returns an Observable object, we need to use the subscribe method to hand the return data
-    this.courseService.getCourses().subscribe((results) => {
-      this.courses = results; // results is going to be if type Icourse[]
-    });
+    this.loadCourses();
     console.log('Courses ngOnInit');
+  }
+
+  loadCourses(
+    page: number = this.currentPage,
+    limit: number = this.limit
+  ): void {
+    this.courseService.getCourses(page, limit).subscribe((results: any) => {
+      this.courses = results.data;
+      this.currentPage = results.page;
+      this.totalPages = results.totalPages;
+    });
+  }
+
+  changePage(page: number): void {
+    if (page < 1 || page > this.totalPages) return;    
+    this.loadCourses(page);
   }
 
   // 4. ngDoCheck runs after ngOnInit: used to detect and act upon changes that Angular does NOT detect on its own.
