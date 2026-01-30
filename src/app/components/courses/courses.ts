@@ -22,6 +22,7 @@ export class Courses implements OnChanges, OnInit, DoCheck, OnDestroy {
   currentPage = 1;
   totalPages = 0;
   limit = 3;
+  search: string = '';
   // courseService: CourseService;
 
   // Lifecycle hooks
@@ -63,20 +64,29 @@ export class Courses implements OnChanges, OnInit, DoCheck, OnDestroy {
     console.log('Courses ngOnInit');
   }
 
-  loadCourses(
-    page: number = this.currentPage,
-    limit: number = this.limit
-  ): void {
-    this.courseService.getCourses(page, limit).subscribe((results: any) => {
-      this.courses = results.data;
-      this.currentPage = results.page;
-      this.totalPages = results.totalPages;
-    });
+  loadCourses(): void {
+    this.courseService
+      .getCourses({
+        page: this.currentPage,
+        limit: this.limit,
+        search: this.search,
+      })
+      .subscribe((results: any) => {
+        this.courses = results.data;
+        this.currentPage = results.page;
+        this.totalPages = results.totalPages;
+      });
   }
 
   changePage(page: number): void {
-    if (page < 1 || page > this.totalPages) return;    
-    this.loadCourses(page);
+    if (page < 1 || page > this.totalPages) return;
+    this.currentPage = page;
+    this.loadCourses();
+  }
+
+  applyFilters(): void {
+    this.currentPage = 1;
+    this.loadCourses();
   }
 
   // 4. ngDoCheck runs after ngOnInit: used to detect and act upon changes that Angular does NOT detect on its own.

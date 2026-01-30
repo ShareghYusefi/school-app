@@ -19,13 +19,16 @@ export class CourseService {
   // This module does need to be imported via provideHttpClient
   constructor(private httpClientInstance: HttpClient) {}
 
-  getCourses(page: number, limit: number): Observable<Icourse[]> {
+  getCourses(params: any): Observable<Icourse[]> {
     // get page and limit from Http Parameters using HttpParams object
-    const params = new HttpParams().set('page', page).set('limit', limit);
+    let httpParams = new HttpParams();
+    Object.keys(params).forEach((key) => {
+      httpParams = httpParams.set(key, params[key]);
+    });
     // Typically making an API call for all courses, but we will use in memory array for now.
     // We can use < > to specify the type of data we expect from the API call.
     return this.httpClientInstance.get<Icourse[]>(this.API_URL + '/courses', {
-      params: params,
+      params: httpParams,
     });
   }
 

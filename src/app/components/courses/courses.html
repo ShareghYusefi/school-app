@@ -1,52 +1,103 @@
-<h2 [class]="{ 'text-uppercase': booleanVariable }">{{ title }}</h2>
+<div class="courses-container">
+  <div class="page-header mb-4">
+    <h1 [class]="{ 'text-uppercase': booleanVariable }">{{ title }}</h1>
+  </div>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Name</th>
-      <th scope="col">Level</th>
-      <th scope="col">Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let course of courses; let i = index">
-      <th scope="row">{{ i + 1 }}</th>
-      <td>{{ course.name }}</td>
-      <td>{{ course.level }}</td>
-      <td>
-        <button
-          type="button"
-          class="btn btn-primary me-2"
-          [routerLink]="['/courses', course.id]"
+  <div class="controls-section mb-4">
+    <div class="row g-2">
+      <div class="col-md-9">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Search courses..."
+          [(ngModel)]="search"
+          (input)="applyFilters()"
+        />
+      </div>
+      <div class="col-md-3">
+        <select
+          class="form-select"
+          [(ngModel)]="limit"
+          (change)="applyFilters()"
         >
-          Edit
-        </button>
-        <button (click)="deleteCourse(course.id)" class="btn btn-danger">
-          Delete
-        </button>
-      </td>
-    </tr>
-  </tbody>
-</table>
-<nav aria-label="Page navigation example">
-  <ul class="pagination">
-    <li class="page-item" [class.disabled]="currentPage === 1">
-      <button class="page-link" (click)="changePage(currentPage - 1)">
-        Previous
-      </button>
-    </li>
-    <li
-      class="page-item"
-      *ngFor="let page of [].constructor(totalPages); let i = index"
-      [class.active]="currentPage === i + 1"
+          <option value="2">2 per page</option>
+          <option value="5">5 per page</option>
+          <option value="8">8 per page</option>
+          <option value="10">10 per page</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- create new course button  -->
+  <div class="mb-3 text-end">
+    <button
+      class="btn btn-success"
+      [routerLink]="['/courses', 'new']"
+      title="Create new course"
     >
-      <button class="page-link" (click)="changePage(i + 1)">{{ i + 1 }}</button>
-    </li>
-    <li class="page-item" [class.disabled]="currentPage === totalPages">
-      <button class="page-link" (click)="changePage(currentPage + 1)">
-        Next
-      </button>
-    </li>
-  </ul>
-</nav>
+      <i class="bi bi-plus-lg"></i> New Course
+    </button>
+  </div>
+
+  <div class="table-wrapper">
+    <table class="table table-hover">
+      <thead class="table-light">
+        <tr>
+          <th scope="col" class="text-center text-primary">#</th>
+          <th scope="col" class="text-primary">Name</th>
+          <th scope="col" class="text-center text-primary">Level</th>
+          <th scope="col" class="text-center text-primary">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let course of courses; let i = index">
+          <th scope="row" class="text-center">{{ i + 1 }}</th>
+          <td>{{ course.name }}</td>
+          <td class="text-center">{{ course.level }}</td>
+          <td class="text-center">
+            <button
+              type="button"
+              class="btn btn-primary btn-sm me-2"
+              [routerLink]="['/courses', course.id]"
+              title="Edit course"
+            >
+              <i class="bi bi-pencil"></i> Edit
+            </button>
+            <button
+              (click)="deleteCourse(course.id)"
+              class="btn btn-danger btn-sm"
+              title="Delete course"
+            >
+              <i class="bi bi-trash"></i> Delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <nav aria-label="Pagination navigation" class="pagination-section">
+    <ul class="pagination justify-content-center">
+      <li class="page-item" [class.disabled]="currentPage === 1">
+        <button class="page-link" (click)="changePage(currentPage - 1)">
+          <i class="bi bi-chevron-left"></i> Previous
+        </button>
+      </li>
+      <li
+        class="page-item"
+        *ngFor="let page of [].constructor(totalPages); let i = index"
+        [class.active]="currentPage === i + 1"
+      >
+        <button class="page-link" (click)="changePage(i + 1)">
+          {{ i + 1 }}
+        </button>
+      </li>
+      <li class="page-item" [class.disabled]="currentPage === totalPages">
+        <button class="page-link" (click)="changePage(currentPage + 1)">
+          Next <i class="bi bi-chevron-right"></i>
+        </button>
+      </li>
+    </ul>
+  </nav>
+</div>
